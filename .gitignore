@@ -1,0 +1,8 @@
+*~
+*.pdf
+*.eps
+obj
+data
+hist
+*.root
+cosmique_proton_generator
