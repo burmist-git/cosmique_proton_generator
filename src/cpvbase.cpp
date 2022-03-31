@@ -101,6 +101,19 @@ void cpvbase::h2D2Init(TH2D *h2D1[nChannels],TString h2name, TString h2Title,
   }  
 }
 
+void cpvbase::h2D2div(TH2D *h2D1_norm,TH2D *h2D1){
+  Int_t i;
+  Int_t j;
+  for(i = 0;i<h2D1_norm->GetNbinsX();i++){
+    for(j = 0;j<h2D1_norm->GetNbinsY();j++){    
+      if(h2D1->GetBinContent(i,j)>0)
+	h2D1_norm->SetBinContent(i,j,h2D1_norm->GetBinContent(i,j)/h2D1->GetBinContent(i,j));
+      else
+	h2D1_norm->SetBinContent(i,j,0);
+    }
+  }
+}
+
 void cpvbase::tProfInit(TProfile *tprof[nChannels],TString prname, TString prTitle,
 		       Int_t Nbin, Float_t Vmin, Float_t Vmax){
   Int_t i;

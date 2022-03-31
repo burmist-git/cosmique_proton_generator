@@ -37,25 +37,28 @@ const TVector3 terzina_n0(0.0,earthR/satelliteH_from_c,-TMath::Cos(TMath::ASin(e
 ////
 void genTrk(Double_t &x0, Double_t &y0, Double_t &z0, Double_t &vx, Double_t &vy, Double_t &vz, Double_t &theta, Double_t &phi, TRandom3 *rnd);
 Bool_t getIntersection(Double_t &x_int, Double_t &y_int, Double_t &z_int, Double_t x0, Double_t y0, Double_t z0, Double_t vx, Double_t vy, Double_t vz);
-Double_t getDistToEarth(Double_t x0, Double_t y0, Double_t z0, Double_t vx, Double_t vy, Double_t vz);
+Double_t getDistToEarth_andPosition(Double_t x0, Double_t y0, Double_t z0, Double_t vx, Double_t vy, Double_t vz, Double_t &xe0, Double_t &ye0, Double_t &ze0);
 Double_t getDistToTerzinaOfIntersection(Double_t x_int, Double_t y_int, Double_t z_int);
 Double_t getAngleBetweenTrzinaAndTrk(Double_t vx, Double_t vy, Double_t vz);
 
 int main(int argc, char *argv[]){
-  if(argc == 5 && atoi(argv[1])==0){
+  if(argc == 6 && atoi(argv[1])==0){
     //
     Int_t nEvents = atoi(argv[2]);
     TString outputRootFile = argv[3];
     Int_t randomSeed = atoi(argv[4]);
+    Int_t statisticsMultiplyFactor = atoi(argv[5]);
     //
-    cout<<"nEvents        "<<nEvents<<endl
-	<<"outputRootFile "<<outputRootFile<<endl
-      	<<"randomSeed     "<<randomSeed<<endl;
+    cout<<"nEvents                  "<<nEvents<<endl
+	<<"outputRootFile           "<<outputRootFile<<endl
+      	<<"randomSeed               "<<randomSeed<<endl
+      	<<"statisticsMultiplyFactor "<<statisticsMultiplyFactor<<endl;
     //
     TRandom3 *rnd = new TRandom3(randomSeed);
     //
     Double_t x0, y0, z0;
     Double_t vx, vy, vz;
+    Double_t xe0, ye0, ze0;
     Double_t theta;
     Double_t phi;
     Double_t x_int, y_int, z_int;
@@ -91,23 +94,32 @@ int main(int argc, char *argv[]){
     tree->Branch("y_int",&y_int, "y_int/D");
     tree->Branch("z_int",&z_int, "z_int/D");
     //
+    tree->Branch("xe0",&xe0, "xe0/D");
+    tree->Branch("ye0",&ye0, "ye0/D");
+    tree->Branch("ze0",&ze0, "ze0/D");
+    //
     tree->Branch("distToEarth",&distToEarth, "distToEarth/D");
     tree->Branch("distToTerzina",&distToTerzina, "distToTerzina/D");
     tree->Branch("angleTrzinaTrk",&angleTrzinaTrk, "angleTrzinaTrk/D");
     //
-    for(Int_t i = 0;i<nEvents;i++){
-      genTrk( x0, y0, z0, vx, vy, vz, theta, phi,rnd);
-      if(getIntersection( x_int, y_int, z_int, x0, y0, z0, vx, vy, vz)){
-	distToTerzina = getDistToTerzinaOfIntersection( x_int, y_int, z_int);
-	if(distToTerzina<40.0){
-	  distToEarth = getDistToEarth( x0, y0, z0, vx, vy, vz);
-	  if(distToEarth>=0.0 && distToEarth<60.0){
-	    angleTrzinaTrk = getAngleBetweenTrzinaAndTrk( vx, vy, vz);
-	    tree->Fill();
+    for(Int_t j = 0;j<statisticsMultiplyFactor;j++){
+      for(Int_t i = 0;i<nEvents;i++){
+	genTrk( x0, y0, z0, vx, vy, vz, theta, phi,rnd);
+	if(z0<satelliteH_from_c){
+	  if(getIntersection( x_int, y_int, z_int, x0, y0, z0, vx, vy, vz)){
+	    distToTerzina = getDistToTerzinaOfIntersection( x_int, y_int, z_int);
+	    if(distToTerzina<40.0){
+	      distToEarth = getDistToEarth_andPosition( x0, y0, z0, vx, vy, vz, xe0, ye0, ze0);
+	      if(distToEarth>=0.0 && distToEarth<60.0){
+		angleTrzinaTrk = getAngleBetweenTrzinaAndTrk( vx, vy, vz);
+		if(angleTrzinaTrk>TMath::PiOver2())
+		  tree->Fill();
+	      }
+	    }
 	  }
 	}
       }
-    }    
+    }
     //
     hfile = tree->GetCurrentFile();
     hfile->Write();
@@ -119,7 +131,8 @@ int main(int argc, char *argv[]){
 	<<" runID [1] = 0 (execution ID number)"<<endl
       	<<"       [2] - n events"<<endl
 	<<"       [3] - output root file"<<endl
-	<<"       [4] - random seed"<<endl;
+	<<"       [4] - random seed"<<endl
+	<<"       [5] - statistics multiply factor"<<endl;
   }
   return 0;
 }
@@ -136,13 +149,15 @@ void genTrk(Double_t &x0, Double_t &y0, Double_t &z0, Double_t &vx, Double_t &vy
   Double_t phi_r0   = rnd->Uniform(0.0,TMath::TwoPi());
   theta  = TMath::ACos(rnd->Uniform(-1.0,1.0));
   phi    = rnd->Uniform(0.0,TMath::TwoPi());
+  TVector3 v_r0_shift;
   TVector3 v_r0;
   TVector3 v_v;
   v_r0.SetMagThetaPhi(satelliteH_from_c,theta_r0,phi_r0);
+  v_r0_shift = v_r0 + terzina_r0;  
   v_v.SetMagThetaPhi(track_speed,theta,phi);
-  x0 = v_r0.x();
-  y0 = v_r0.y();
-  z0 = v_r0.z();
+  x0 = v_r0_shift.x();
+  y0 = v_r0_shift.y();
+  z0 = v_r0_shift.z();
   vx = v_v.x();
   vy = v_v.y();
   vz = v_v.z();
@@ -174,7 +189,7 @@ Bool_t getIntersection(Double_t &x_int, Double_t &y_int, Double_t &z_int, Double
   return true;
 }
 
-Double_t getDistToEarth(Double_t x0, Double_t y0, Double_t z0, Double_t vx, Double_t vy, Double_t vz){
+Double_t getDistToEarth_andPosition(Double_t x0, Double_t y0, Double_t z0, Double_t vx, Double_t vy, Double_t vz, Double_t &xe0, Double_t &ye0, Double_t &ze0){
   //
   TVector3 v_r0(x0,y0,z0);
   TVector3 v_v(vx,vy,vz);
@@ -185,6 +200,11 @@ Double_t getDistToEarth(Double_t x0, Double_t y0, Double_t z0, Double_t vx, Doub
   Double_t t = -v_r0.Dot(v_v)/div;
   TVector3 v;
   v = v_r0 + v_v*t;
+  //
+  xe0 = v.x();
+  ye0 = v.y();
+  ze0 = v.z();
+  //
   return (v.Mag()-earthR);
 }
 

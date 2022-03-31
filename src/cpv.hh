@@ -31,6 +31,10 @@ public:
   }
 
   void Loop(TString histOut);
+  void createEASCherSim_ini( Int_t eventIDmy, Double_t theta_deg, Double_t heightAboveEarth_km);
+  void create_cosmique_proton_generator_info(Int_t eventIDmy, Double_t theta_deg, Double_t phi_deg, Double_t heightAboveEarth_km);
+  void readEASCherSim( TString inRootFileName, double dist,  double &nphotons_per_m2);
+  TString getShowerRootFileName(Int_t eventIDmy);
   
 };
 

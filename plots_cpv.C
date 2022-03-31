@@ -23,7 +23,7 @@ Int_t plots_cpv(){
   gr2D_sphere->SetTitle("");
   gr2D_sphere->Draw("P");
   gr2D_pint->Draw("sameP");
-  //gr2D_p0->Draw("sameP");
+  gr2D_p0->Draw("sameP");
   gr2D_pe0->Draw("sameP");
   //gr2D_p0->SetTitle("");
   //gr2D_p0->Draw("P");

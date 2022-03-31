@@ -5,4 +5,5 @@ obj
 data
 hist
 *.root
-cosmique_proton_generator
+cosmique_proton_generator*
+runcpv

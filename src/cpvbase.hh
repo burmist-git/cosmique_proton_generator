@@ -103,6 +103,7 @@ protected :
                  Int_t Nbin, Float_t Vmin, Float_t Vmax);
   double getUnixTimeFromTime(double d_year, double d_month, double d_day, double d_hour, double d_min, double d_sec);  
   //
+  void h2D2div(TH2D *h2D1_norm,TH2D *h2D1);
   
 };
 
