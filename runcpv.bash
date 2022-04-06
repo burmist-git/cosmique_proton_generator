@@ -1,23 +1,7 @@
 #!/bin/bash
 
-########################################################################
-#                                                                      #
-# Copyright(C) 2018 - LBS - (Single person developer.)                 #
-# Tue Mar  6 20:15:29 JST 2018                                         #
-# Autor: Leonid Burmistrov                                             #
-#                                                                      #
-# File description:                                                    #
-#                 This script run the analysis class.                  #
-#                                                                      #
-# Input paramete:                                                      #
-#                                                                      #
-# This software is provided "as is" without any warranty.              #
-#                                                                      #
-########################################################################
-
-#source /home/gred/root_34_36/bin/thisroot.sh;
-#useroot53434
-#useroot60806
+module load GCC/8.3.0 OpenMPI/3.1.4 ROOT/6.20.04-Python-3.7.4
+source /opt/ebsofts/ROOT/6.20.04-foss-2019b-Python-3.7.4/bin/thisroot.sh
 
 #Analyse list of root files 
 rootFilesList="./rootFileList.dat"

@@ -105,8 +105,8 @@ void cpv::Loop(TString histOut){
       //
       //createEASCherSim_ini(eventIDmy,theta*180.0/TMath::Pi(),heightAboveEarth);
       //create_cosmique_proton_generator_info(eventIDmy,theta*180.0/TMath::Pi(),phi*180.0/TMath::Pi(),heightAboveEarth);
-      inShowerRootFileName = getShowerRootFileName(eventIDmy);
-      readEASCherSim( inShowerRootFileName, distToTerzina, nphotons_per_m2);
+      //inShowerRootFileName = getShowerRootFileName(eventIDmy);
+      //readEASCherSim( inShowerRootFileName, distToTerzina, nphotons_per_m2);
       //
       h1_nphotons_per_m2->Fill(nphotons_per_m2);
       //

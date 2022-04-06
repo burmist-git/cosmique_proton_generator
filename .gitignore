@@ -7,3 +7,5 @@ hist
 *.root
 cosmique_proton_generator*
 runcpv
+job_error/
+job_output/
