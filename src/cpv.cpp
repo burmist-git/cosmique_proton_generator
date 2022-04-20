@@ -87,7 +87,10 @@ void cpv::Loop(TString histOut){
   double nphotons_per_m2 = 0.0;
   TString inShowerRootFileName; 
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
+  //for (Long64_t jentry=0; jentry<100;jentry++) {
     Long64_t ientry = LoadTree(jentry);
+    if(jentry%1000 == 0)
+      cout<<jentry<<endl;
     if (ientry < 0) break;
     nb = fChain->GetEntry(jentry);   nbytes += nb;
     if(angleTrzinaTrk>170.0/180.0*TMath::Pi()){
@@ -106,9 +109,12 @@ void cpv::Loop(TString histOut){
       //createEASCherSim_ini(eventIDmy,theta*180.0/TMath::Pi(),heightAboveEarth);
       //create_cosmique_proton_generator_info(eventIDmy,theta*180.0/TMath::Pi(),phi*180.0/TMath::Pi(),heightAboveEarth);
       //inShowerRootFileName = getShowerRootFileName(eventIDmy);
+      //printTrkInfo(eventIDmy);
       //readEASCherSim( inShowerRootFileName, distToTerzina, nphotons_per_m2);
+      //readEASCherSimNewFormat( inShowerRootFileName, distToTerzina, nphotons_per_m2);
+      //cout<<"nphotons_per_m2 = "<<nphotons_per_m2<<endl;
       //
-      h1_nphotons_per_m2->Fill(nphotons_per_m2);
+      //h1_nphotons_per_m2->Fill(nphotons_per_m2);
       //
       h2_distToEarth_vs_theta->Fill(theta*180.0/TMath::Pi(),distToEarth);
       h2_distToEarth_vs_theta_norm->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
@@ -150,13 +156,27 @@ void cpv::Loop(TString histOut){
 }
 
 void cpv::createEASCherSim_ini( Int_t eventIDmy, Double_t theta_deg, Double_t heightAboveEarth_km){
-  char buffer [6];
-  sprintf(buffer ,"%05d", eventIDmy);
-  TString fileName = "../EASCherSim/ini/EASCherSim_";
+  char buffer [8];
+  sprintf(buffer ,"%07d", eventIDmy);
+  //TString fileName = "../EASCherSim/ini/EASCherSim_";
+  TString fileName;
+  //
+  TString iniDir = "../easchersim/ini/";
+  Int_t nFilesPerDir = 200;
+  Int_t dirNameID = eventIDmy/nFilesPerDir;
+  char buffer2 [6];
+  sprintf(buffer2 ,"%05d", dirNameID);
+  TString fileNameIDstr =  buffer2;
+  iniDir += fileNameIDstr;
+  iniDir += "/";
+  //
   TString fileNameID =  buffer;
+  fileName = iniDir;
+  fileName += "EASCherSim_";
+
   fileName += fileNameID;
   fileName += ".ini";
-  //cout<<fileName<<endl;
+  cout<<fileName<<endl;
   //
   ofstream myfile;
   myfile.open (fileName.Data());
@@ -183,20 +203,89 @@ void cpv::createEASCherSim_ini( Int_t eventIDmy, Double_t theta_deg, Double_t he
 }
 
 TString cpv::getShowerRootFileName(Int_t eventIDmy){
-  TString fileName = "/home/dpncguest/home2/work/POEMMA/geant4/cosmique_proton_generator/cosmique_proton_generator.info";
-  ofstream myfile;
-  char buffer[6];
-  sprintf(buffer ,"%05d", eventIDmy);
+  // 
+  //../easchersim/root/00009/EASCherSim_0001894.ini.npz.root
+  //
+  char buffer [8];
+  sprintf(buffer ,"%07d", eventIDmy);
+  //TString fileName = "../EASCherSim/ini/EASCherSim_";
+  TString rootDir = "../easchersim/root/";
+  Int_t nFilesPerDir = 200;
+  Int_t dirNameID = eventIDmy/nFilesPerDir;
+  char buffer2 [6];
+  sprintf(buffer2 ,"%05d", dirNameID);
+  TString fileNameIDstr =  buffer2;
+  rootDir += fileNameIDstr;
+  rootDir += "/";
+  //
   TString fileNameID =  buffer;
   //
-  TString fileNameini = "EASCherSim_";
-  fileNameini += fileNameID;
-  fileNameini += ".ini";
+  TString fileName = rootDir;
+  fileName += "EASCherSim_";
   //
-  TString fileNameroot = "/home/dpncguest/home2/work/POEMMA/geant4/EASCherSim/root/";
-  fileNameroot += fileNameini;
-  fileNameroot += ".root";
-  return fileNameroot;
+  fileName += fileNameID;
+  fileName += ".ini.npz.root";
+  //cout<<fileName<<endl;
+  //
+  //TString fileName = "/home/dpncguest/home2/work/POEMMA/geant4/cosmique_proton_generator/cosmique_proton_generator.info";
+  //ofstream myfile;
+  //char buffer[6];
+  //sprintf(buffer ,"%05d", eventIDmy);
+  //TString fileNameID =  buffer;
+  ////
+  //TString fileNameini = "EASCherSim_";
+  //fileNameini += fileNameID;
+  //fileNameini += ".ini";
+  ////
+  //TString fileNameroot = "/home/dpncguest/home2/work/POEMMA/geant4/EASCherSim/root/";
+  //fileNameroot += fileNameini;
+  //fileNameroot += ".root";
+  return fileName;
+}
+
+void cpv::printTrkInfo(Int_t eventIDmy){
+  // 
+  //../easchersim/root/00009/EASCherSim_0001894.ini.npz.root
+  //
+  char buffer [8];
+  sprintf(buffer ,"%07d", eventIDmy);
+  //TString fileName = "../EASCherSim/ini/EASCherSim_";
+  TString rootDir = "../easchersim/root/";
+  Int_t nFilesPerDir = 200;
+  Int_t dirNameID = eventIDmy/nFilesPerDir;
+  char buffer2 [6];
+  sprintf(buffer2 ,"%05d", dirNameID);
+  TString fileNameIDstr =  buffer2;
+  rootDir += fileNameIDstr;
+  rootDir += "/";
+  //
+  TString fileNameID =  buffer;
+  //
+  TString fileName = rootDir;
+  fileName += "trkInfo_";
+  //
+  fileName += fileNameID;
+  fileName += ".dat";
+  //
+  if(file_exists_test(getShowerRootFileName(eventIDmy))){
+    ofstream myfile;
+    myfile.open (fileName.Data());
+    myfile<<"theta"<<" "
+	  <<"phi"<<" "
+	  <<"x_int"<<" "
+	  <<"y_int"<<" "
+	  <<"z_int"<<" "
+	  <<"distToEarth"<<" "
+	  <<"distToTerzina"<<endl;
+    myfile<<theta<<" "
+	  <<phi<<" "
+	  <<x_int<<" "
+	  <<y_int<<" "
+	  <<z_int<<" "
+	  <<distToEarth<<" "
+	  <<distToTerzina<<endl;
+    myfile.close();
+  }
 }
 
 void cpv::create_cosmique_proton_generator_info(Int_t eventIDmy, Double_t theta_deg, Double_t phi_deg, Double_t heightAboveEarth_km){
@@ -430,4 +519,28 @@ void cpv::readEASCherSim( TString inRootFileName, double dist,  double &nphotons
 
   */
   //assert(0);
+}
+
+void cpv::readEASCherSimNewFormat( TString inRootFileName, double dist,  double &nphotons_per_m2){
+  if(file_exists_test(inRootFileName)){
+    TFile *fIn = new TFile(inRootFileName.Data());
+    fIn->cd();
+    TH1D *distance = (TH1D*)fIn->Get("r");
+    auto nBinDist = distance->FindBin(dist);
+    nphotons_per_m2 = distance->GetBinContent((int)nBinDist);
+    fIn->Close();
+  }
+  else {
+    nphotons_per_m2 = 0.0;
+  }
+}
+
+bool cpv::file_exists_test(TString inRootFileName) {
+  if (FILE *file = fopen(inRootFileName.Data(), "r")) {
+    fclose(file);
+    return true;
+  }else {
+    return false;
+  }  
+  return false;
 }

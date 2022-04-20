@@ -6,6 +6,8 @@ source /opt/ebsofts/ROOT/6.20.04-foss-2019b-Python-3.7.4/bin/thisroot.sh
 #Analyse list of root files 
 rootFilesList="./rootFileList.dat"
 outHistF="./hist.root"
+#rootFilesList="./rootFileList_short.dat"
+#outHistF="./hist_short.root"
 
 #Or analyse single root file 
 inRootFiles="./data/cosmique_proton_generator.root"
