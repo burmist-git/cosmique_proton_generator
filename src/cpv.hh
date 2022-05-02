@@ -37,7 +37,8 @@ public:
   void readEASCherSimNewFormat( TString inRootFileName, double dist,  double &nphotons_per_m2);
   TString getShowerRootFileName(Int_t eventIDmy);
   bool file_exists_test(TString inRootFileName);
-  void printTrkInfo(Int_t eventIDmy);
+  void printTrkInfo( Int_t eventIDmy, double nphotons_per_m2);
+  void saveTrkInfoAndPhotonDencity( Int_t eventIDmy, Double_t nphotons_per_m2);
 };
 
 #endif

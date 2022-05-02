@@ -70,6 +70,33 @@ void cpv::Loop(TString histOut){
   //
   TH2D *h2_distToEarth_vs_theta_norm = new TH2D("h2_distToEarth_vs_theta_norm","distToEarth vs theta norm",50,66.5,70,50,0.0,60.0);
   //
+  TH2D *h2_distToEarth_vs_theta_00 = new TH2D("h2_distToEarth_vs_theta_00","distToEarth vs theta 00 phi<260",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_01 = new TH2D("h2_distToEarth_vs_theta_01","distToEarth vs theta 01 260<=phi<262",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_02 = new TH2D("h2_distToEarth_vs_theta_02","distToEarth vs theta 02 262<=phi<264",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_03 = new TH2D("h2_distToEarth_vs_theta_03","distToEarth vs theta 03 264<=phi<266",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_04 = new TH2D("h2_distToEarth_vs_theta_04","distToEarth vs theta 04 266<=phi<268",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_05 = new TH2D("h2_distToEarth_vs_theta_05","distToEarth vs theta 05 268<=phi<270",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_06 = new TH2D("h2_distToEarth_vs_theta_06","distToEarth vs theta 06 270<=phi<272",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_07 = new TH2D("h2_distToEarth_vs_theta_07","distToEarth vs theta 07 272<=phi<274",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_08 = new TH2D("h2_distToEarth_vs_theta_08","distToEarth vs theta 08 274<=phi<276",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_09 = new TH2D("h2_distToEarth_vs_theta_09","distToEarth vs theta 09 276<=phi<278",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_10 = new TH2D("h2_distToEarth_vs_theta_10","distToEarth vs theta 10 278<=phi<=280",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_11 = new TH2D("h2_distToEarth_vs_theta_11","distToEarth vs theta 11 phi>280",50,66.5,70,50,0.0,60.0);
+
+  TH2D *h2_distToEarth_vs_theta_norm_00 = new TH2D("h2_distToEarth_vs_theta_norm_00","distToEarth vs theta norm 00 phi<260",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_01 = new TH2D("h2_distToEarth_vs_theta_norm_01","distToEarth vs theta norm 01 260<=phi<262",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_02 = new TH2D("h2_distToEarth_vs_theta_norm_02","distToEarth vs theta norm 02 262<=phi<264",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_03 = new TH2D("h2_distToEarth_vs_theta_norm_03","distToEarth vs theta norm 03 264<=phi<266",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_04 = new TH2D("h2_distToEarth_vs_theta_norm_04","distToEarth vs theta norm 04 266<=phi<268",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_05 = new TH2D("h2_distToEarth_vs_theta_norm_05","distToEarth vs theta norm 05 268<=phi<270",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_06 = new TH2D("h2_distToEarth_vs_theta_norm_06","distToEarth vs theta norm 06 270<=phi<272",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_07 = new TH2D("h2_distToEarth_vs_theta_norm_07","distToEarth vs theta norm 07 272<=phi<274",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_08 = new TH2D("h2_distToEarth_vs_theta_norm_08","distToEarth vs theta norm 08 274<=phi<276",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_09 = new TH2D("h2_distToEarth_vs_theta_norm_09","distToEarth vs theta norm 09 276<=phi<278",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_10 = new TH2D("h2_distToEarth_vs_theta_norm_10","distToEarth vs theta norm 10 278<=phi<=280",50,66.5,70,50,0.0,60.0);
+  TH2D *h2_distToEarth_vs_theta_norm_11 = new TH2D("h2_distToEarth_vs_theta_norm_11","distToEarth vs theta norm 11 phi>280",50,66.5,70,50,0.0,60.0);
+
+  //
   for(Int_t i = 0;i<1000;i++){
     costhetaE = rnd->Uniform(-1.0,1.0);
     thetaE = TMath::ACos(costhetaE);
@@ -77,6 +104,8 @@ void cpv::Loop(TString histOut){
     v1.SetMagThetaPhi(earthR,thetaE,phiE);
     gr2D_sphere->SetPoint(gr2D_sphere->GetN(),v1.x(),v1.y(),v1.z());
   }
+  //
+  Double_t phiDeg;
   //
   Long64_t nentries = fChain->GetEntriesFast();
   cout<<"nentries = "<<nentries<<endl;
@@ -101,29 +130,92 @@ void cpv::Loop(TString histOut){
       //
       h1_theta_deg->Fill(theta*180.0/TMath::Pi());
       h1_phi_deg->Fill(phi*180.0/TMath::Pi());
+      phiDeg=phi*180.0/TMath::Pi();
       h1_distToEarth->Fill(distToEarth);
       h1_distToTerzina->Fill(distToTerzina);
       h1_angleTrzinaTrk_deg->Fill(angleTrzinaTrk*180.0/TMath::Pi());
       h1_heightAboveEarth->Fill(heightAboveEarth);
-      //
+      // 
+      //old function for ini creation
       //createEASCherSim_ini(eventIDmy,theta*180.0/TMath::Pi(),heightAboveEarth);
       //create_cosmique_proton_generator_info(eventIDmy,theta*180.0/TMath::Pi(),phi*180.0/TMath::Pi(),heightAboveEarth);
-      //inShowerRootFileName = getShowerRootFileName(eventIDmy);
-      //printTrkInfo(eventIDmy);
+      inShowerRootFileName = getShowerRootFileName(eventIDmy);
       //readEASCherSim( inShowerRootFileName, distToTerzina, nphotons_per_m2);
-      //readEASCherSimNewFormat( inShowerRootFileName, distToTerzina, nphotons_per_m2);
+      readEASCherSimNewFormat( inShowerRootFileName, distToTerzina, nphotons_per_m2);
+      printTrkInfo(eventIDmy,nphotons_per_m2);
       //cout<<"nphotons_per_m2 = "<<nphotons_per_m2<<endl;
       //
-      //h1_nphotons_per_m2->Fill(nphotons_per_m2);
+      h1_nphotons_per_m2->Fill(nphotons_per_m2);
       //
       h2_distToEarth_vs_theta->Fill(theta*180.0/TMath::Pi(),distToEarth);
       h2_distToEarth_vs_theta_norm->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      //
+      if(phi*180.0/TMath::Pi()<260.0){
+	h2_distToEarth_vs_theta_00->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_00->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 260.0 && phi*180.0/TMath::Pi() < 262.0){
+	h2_distToEarth_vs_theta_01->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_01->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 262.0 && phi*180.0/TMath::Pi() < 264.0){
+	h2_distToEarth_vs_theta_02->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_02->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 264.0 && phi*180.0/TMath::Pi() < 266.0){
+	h2_distToEarth_vs_theta_03->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_03->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 266.0 && phi*180.0/TMath::Pi() < 268.0){
+	h2_distToEarth_vs_theta_04->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_04->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 268.0 && phi*180.0/TMath::Pi() < 270.0){
+	h2_distToEarth_vs_theta_05->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_05->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 270.0 && phi*180.0/TMath::Pi() < 272.0){
+	h2_distToEarth_vs_theta_06->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_06->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 272.0 && phi*180.0/TMath::Pi() < 274.0){
+	h2_distToEarth_vs_theta_07->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_07->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 274.0 && phi*180.0/TMath::Pi() < 276.0){
+	h2_distToEarth_vs_theta_08->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_08->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 276.0 && phi*180.0/TMath::Pi() < 278.0){
+	h2_distToEarth_vs_theta_09->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_09->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() >= 278.0 && phi*180.0/TMath::Pi() <= 280.0){
+	h2_distToEarth_vs_theta_10->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_10->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
+      if(phi*180.0/TMath::Pi() > 280.0){
+	h2_distToEarth_vs_theta_11->Fill(theta*180.0/TMath::Pi(),distToEarth);
+	h2_distToEarth_vs_theta_norm_11->Fill(theta*180.0/TMath::Pi(),distToEarth,nphotons_per_m2);
+      }
       //
       eventIDmy++;
     }
   }
   //
   h2D2div(h2_distToEarth_vs_theta_norm,h2_distToEarth_vs_theta);
+  h2D2div(h2_distToEarth_vs_theta_norm_00,h2_distToEarth_vs_theta_00);
+  h2D2div(h2_distToEarth_vs_theta_norm_01,h2_distToEarth_vs_theta_01);
+  h2D2div(h2_distToEarth_vs_theta_norm_02,h2_distToEarth_vs_theta_02);
+  h2D2div(h2_distToEarth_vs_theta_norm_03,h2_distToEarth_vs_theta_03);
+  h2D2div(h2_distToEarth_vs_theta_norm_04,h2_distToEarth_vs_theta_04);
+  h2D2div(h2_distToEarth_vs_theta_norm_05,h2_distToEarth_vs_theta_05);
+  h2D2div(h2_distToEarth_vs_theta_norm_06,h2_distToEarth_vs_theta_06);
+  h2D2div(h2_distToEarth_vs_theta_norm_07,h2_distToEarth_vs_theta_07);
+  h2D2div(h2_distToEarth_vs_theta_norm_08,h2_distToEarth_vs_theta_08);
+  h2D2div(h2_distToEarth_vs_theta_norm_09,h2_distToEarth_vs_theta_09);
+  h2D2div(h2_distToEarth_vs_theta_norm_10,h2_distToEarth_vs_theta_10);
+  h2D2div(h2_distToEarth_vs_theta_norm_11,h2_distToEarth_vs_theta_11);
   //
   TFile* rootFile = new TFile(histOut.Data(), "RECREATE", " Histograms", 1);
   rootFile->cd();
@@ -151,6 +243,32 @@ void cpv::Loop(TString histOut){
   //
   h2_distToEarth_vs_theta->Write();
   h2_distToEarth_vs_theta_norm->Write();
+  //
+  h2_distToEarth_vs_theta_00->Write();
+  h2_distToEarth_vs_theta_01->Write();
+  h2_distToEarth_vs_theta_02->Write();
+  h2_distToEarth_vs_theta_03->Write();
+  h2_distToEarth_vs_theta_04->Write();
+  h2_distToEarth_vs_theta_05->Write();
+  h2_distToEarth_vs_theta_06->Write();
+  h2_distToEarth_vs_theta_07->Write();
+  h2_distToEarth_vs_theta_08->Write();
+  h2_distToEarth_vs_theta_09->Write();
+  h2_distToEarth_vs_theta_10->Write();
+  h2_distToEarth_vs_theta_11->Write();
+  //
+  h2_distToEarth_vs_theta_norm_00->Write();
+  h2_distToEarth_vs_theta_norm_01->Write();
+  h2_distToEarth_vs_theta_norm_02->Write();
+  h2_distToEarth_vs_theta_norm_03->Write();
+  h2_distToEarth_vs_theta_norm_04->Write();
+  h2_distToEarth_vs_theta_norm_05->Write();
+  h2_distToEarth_vs_theta_norm_06->Write();
+  h2_distToEarth_vs_theta_norm_07->Write();
+  h2_distToEarth_vs_theta_norm_08->Write();
+  h2_distToEarth_vs_theta_norm_09->Write();
+  h2_distToEarth_vs_theta_norm_10->Write();
+  h2_distToEarth_vs_theta_norm_11->Write();
   //
   rootFile->Close();
 }
@@ -243,7 +361,13 @@ TString cpv::getShowerRootFileName(Int_t eventIDmy){
   return fileName;
 }
 
-void cpv::printTrkInfo(Int_t eventIDmy){
+void cpv::printTrkInfo( Int_t eventIDmy, double nphotons_per_m2){
+  //theta       phi 
+  //1.17706 4.86938 
+  //         x_int        y_int         z_int            xe0           ye0          ze0 
+  //-8.87926639948 1.0402504604 6898.51118961 -390.672021698 2412.97338838 5884.0611177 
+  //   distToEarth distToTerzina angleTrzinaTrk nphotons_per_m2
+  //0.596380690828 9.28598761906 2.99660248562  0.0128641130477
   // 
   //../easchersim/root/00009/EASCherSim_0001894.ini.npz.root
   //
@@ -268,22 +392,38 @@ void cpv::printTrkInfo(Int_t eventIDmy){
   fileName += ".dat";
   //
   if(file_exists_test(getShowerRootFileName(eventIDmy))){
+    //FILE *fp01;
+    //fp01 = fopen(fileName.Data(), "w");
+    //fprintf(fp01, " theta        m \n");
+    //fprintf(fp01, "%10.7f %10.7f \n",x,y);
+    //fclose(fp01);
+    //
     ofstream myfile;
     myfile.open (fileName.Data());
     myfile<<"theta"<<" "
-	  <<"phi"<<" "
-	  <<"x_int"<<" "
-	  <<"y_int"<<" "
-	  <<"z_int"<<" "
-	  <<"distToEarth"<<" "
-	  <<"distToTerzina"<<endl;
+    	  <<"phi"<<" "
+    	  <<"x_int"<<" "
+    	  <<"y_int"<<" "
+    	  <<"z_int"<<" ";
+    myfile<<"xe0"<<" "
+    	  <<"ye0"<<" "
+    	  <<"ze0"<<" "
+    	  <<"distToEarth"<<" "
+    	  <<"distToTerzina"<<" "
+	  <<"angleTrzinaTrk"<<" "
+    	  <<"nphotons_per_m2"<<endl;
     myfile<<theta<<" "
-	  <<phi<<" "
-	  <<x_int<<" "
-	  <<y_int<<" "
-	  <<z_int<<" "
-	  <<distToEarth<<" "
-	  <<distToTerzina<<endl;
+    	  <<phi<<" "
+    	  <<std::setprecision(12)<<x_int<<" "
+    	  <<std::setprecision(12)<<y_int<<" "
+    	  <<std::setprecision(12)<<z_int<<" ";
+    myfile<<std::setprecision(12)<<xe0<<" "
+    	  <<std::setprecision(12)<<ye0<<" "
+    	  <<std::setprecision(12)<<ze0<<" "
+    	  <<distToEarth<<" "
+    	  <<distToTerzina<<" "
+	  <<angleTrzinaTrk<<" "
+    	  <<nphotons_per_m2<<endl;
     myfile.close();
   }
 }

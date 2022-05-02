@@ -1,0 +1,31 @@
+ROOTCFLAGS    = $(shell $(ROOTSYS)/bin/root-config --cflags)
+ROOTLIBS      = $(shell $(ROOTSYS)/bin/root-config --libs)
+ROOTGLIBS     = $(shell $(ROOTSYS)/bin/root-config --glibs)
+
+CXX  = g++
+CXX += -I./	
+CXX += -I./obj/
+
+CXXFLAGS  = -g -Wall -fPIC -Wno-deprecated
+CXXFLAGS += $(ROOTCFLAGS)
+
+OUTLIB = ./obj/
+
+#----------------------------------------------------#
+
+all: runmerg	
+
+runmerg: runmerg.cpp obj/merg.o obj/mergbase.o
+	$(CXX) -o runmerg runmerg.cpp $(OUTLIB)*.o $(ROOTCFLAGS) $(ROOTLIBS) $(ROOTGLIBS)
+
+obj/merg.o: src/merg.cpp src/merg.hh obj/mergbase.o
+	$(CXX) $(CXXFLAGS) -c -I. -o $(OUTLIB)merg.o $<
+
+obj/mergbase.o: src/mergbase.cpp src/mergbase.hh
+	$(CXX) $(CXXFLAGS) -c -I. -o $(OUTLIB)mergbase.o $<
+
+clean:
+	rm -f runmerg
+	rm -f *~
+	rm -f src/*~
+	rm -f $(OUTLIB)*.o

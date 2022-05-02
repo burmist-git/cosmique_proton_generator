@@ -13,7 +13,7 @@ OUTLIB = ./obj/
 
 #----------------------------------------------------#
 
-all: cosmique_proton_generator
+all: cosmique_proton_generator mergeDATfiles
 
 .PHONY: printmakehelp_and_reminder
 printmakehelp_and_reminder: plots_effective_area.C Makefileterzina
@@ -27,8 +27,12 @@ printmakehelp_and_reminder: plots_effective_area.C Makefileterzina
 cosmique_proton_generator: cosmique_proton_generator.C
 	$(CXX) -o $@ $^ $(ROOTCFLAGS) $(ROOTLIBS) $(ROOTGLIBS)
 
+mergeDATfiles: mergeDATfiles.C
+	$(CXX) -o $@ $^ $(ROOTCFLAGS) $(ROOTLIBS) $(ROOTGLIBS)
+
 clean:
 	rm -f cosmique_proton_generator
+	rm -f mergeDATfiles
 	rm -f *~
 	rm -f src/*~
 	rm -f $(OUTLIB)*.o
