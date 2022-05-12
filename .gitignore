@@ -12,3 +12,4 @@ job_output/
 data_root
 rootFileList_short.dat
 mergeDATfiles
+tmp/

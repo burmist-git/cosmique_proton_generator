@@ -76,6 +76,8 @@ Int_t all_particle_spectrum_vs_E(){
   //
   //Fit
   //
+  TString histOut = "cosmique_particle_spectrum.root";
+  //
   const Int_t npar = 3;
   Double_t inParameters[npar];
   Double_t e_min  = 1.0*1.0e+7;
@@ -116,7 +118,7 @@ Int_t all_particle_spectrum_vs_E(){
   ///////////////////
   Double_t earthR = 6371000.0;
   Double_t satelliteH = 525000.0;
-  Double_t efficiency = 5.3e-9;
+  Double_t efficiency = 5.45e-9;
   Double_t efficiencyTime = 0.4;
   Double_t nYears = 3.0;
   //
@@ -215,10 +217,30 @@ Int_t all_particle_spectrum_vs_E(){
   leg->AddEntry(h1_particle_per_year_more, "Cumulated", "pl");
   leg->Draw();
   //
+  //
   //TCanvas *c2 = new TCanvas("c2","c2",10,10,600,600);
   //h1_particle_per_year_more->SetLineColor(kBlack);
   //h1_particle_per_year_more->SetLineWidth(3.0);
   //h1_particle_per_year_more->Draw();
+  //
+  //
+  //
+  TFile* rootFile = new TFile(histOut.Data(), "RECREATE", " Histograms", 1);
+  rootFile->cd();
+  if (rootFile->IsZombie()){
+    cout<<"  ERROR ---> file "<<histOut.Data()<<" is zombi"<<endl;
+    assert(0);
+  }
+  else
+    cout<<"  Output Histos file ---> "<<histOut.Data()<<endl;
+  //
+  //c1->Write();
+  gr_all_particle_spectrum_vs_E_ev->SetName("gr_all_particle_spectrum_vs_E_ev");
+  gr_all_particle_spectrum_vs_E_ev->SetTitle("gr_all_particle_spectrum_vs_E_ev");
+  gr_all_particle_spectrum_vs_E_ev->Write();
+  //f_cpf->Write();
+  h1_particle_per_year->Write();
+  h1_particle_per_year_more->Write();
   //
   return 0;
 }
