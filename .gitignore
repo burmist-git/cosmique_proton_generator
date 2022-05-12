@@ -13,3 +13,4 @@ data_root
 rootFileList_short.dat
 mergeDATfiles
 tmp/
+runmerg
